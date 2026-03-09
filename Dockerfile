@@ -3,23 +3,23 @@
 # 基于阿里云 ACR Python 基础镜像
 # =============================================================================
 
-# 使用企业版 ACR 中的基础镜像，或本地构建
-# 方案：使用 alpine 基础镜像，手动安装 Python
-FROM alpine:3.18
+# 使用阿里云 ACR 官方 Python 基础镜像
+FROM registry.cn-hangzhou.aliyuncs.com/alinux/alinux3:3.10
 
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# 安装 Python 和 pip
-RUN apk add --no-cache python3 py3-pip
+# 安装 Python 3.10 和 pip
+RUN yum install -y python3 python3-pip && \
+    yum clean all
 
 # 设置工作目录
 WORKDIR /app
 
 # 安装依赖
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt --break-system-packages
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # 复制应用代码
 COPY main.py .
