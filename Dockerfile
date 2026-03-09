@@ -4,7 +4,7 @@
 # =============================================================================
 
 # 使用阿里云 ACR 官方 Python 基础镜像
-FROM registry.cn-hangzhou.aliyuncs.com/acs/alpine:3.18
+FROM registry.cn-hangzhou.aliyuncs.com/alinux/alinux3:3.10
 
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1
